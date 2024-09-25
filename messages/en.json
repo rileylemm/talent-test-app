@@ -1,0 +1,12 @@
+{
+  "landing": {
+    "title": "Find Your Path",
+    "description": "Discover your unique talents and unlock your potential career path with our comprehensive talent test.",
+    "takeTest": "Take Test"
+  },
+  "test": {
+    "title": "Talent Test",
+    "description": "This test consists of 23 scenarios. For each scenario, choose the answer that best reflects how you would respond. Your choices will help determine your unique talents and potential career paths.",
+    "backToHome": "Back to Home"
+  }
+}

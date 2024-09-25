@@ -1,0 +1,12 @@
+{
+  "landing": {
+    "title": "Finden Sie Ihren Weg",
+    "description": "Entdecken Sie Ihre einzigartigen Talente und erschließen Sie Ihren potenziellen Karriereweg mit unserem umfassenden Talenttest.",
+    "takeTest": "Test starten"
+  },
+  "test": {
+    "title": "Talenttest",
+    "description": "Dieser Test besteht aus 23 Szenarien. Wählen Sie für jedes Szenario die Antwort, die am besten widerspiegelt, wie Sie reagieren würden. Ihre Entscheidungen helfen dabei, Ihre einzigartigen Talente und potenziellen Karrierewege zu bestimmen.",
+    "backToHome": "Zurück zur Startseite"
+  }
+}
