@@ -1,104 +1,80 @@
-"use client"
+'use client'
 
-import { useState } from "react"
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Progress } from "@/components/ui/progress"
-import { scenarios, ScoreMapping, Scenario } from "@/lib/scenarios"
+import { scenarios, talents } from '@/lib/scenarios'
 
 export default function TalentTest() {
+  const t = useTranslations('test')
   const [currentScenario, setCurrentScenario] = useState(0)
-  const [scores, setScores] = useState<ScoreMapping>({})
-  const [showResults, setShowResults] = useState(false)
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+  const [selectedAnswer, setSelectedAnswer] = useState<string | undefined>(undefined)
+  const [talentScores, setTalentScores] = useState<Record<string, number>>(
+    Object.fromEntries(talents.map(talent => [talent, 0]))
+  )
 
-  const handleSubmit = () => {
-    if (selectedAnswer !== null) {
-      const answerIndex = parseInt(selectedAnswer)
-      const answer = scenarios[currentScenario].answers[answerIndex]
-      const newScores = { ...scores }
+  const router = useRouter()
+
+  const handleAnswer = (value: string) => {
+    setSelectedAnswer(value)
+  }
+
+  const handleNext = () => {
+    if (selectedAnswer !== undefined) {
+      const answer = scenarios[currentScenario].answers[parseInt(selectedAnswer)]
+      const newScores = { ...talentScores }
 
       Object.entries(answer.positiveScores).forEach(([talent, score]) => {
         newScores[talent] = (newScores[talent] || 0) + score
       })
+
       Object.entries(answer.negativeScores).forEach(([talent, score]) => {
         newScores[talent] = (newScores[talent] || 0) + score
       })
 
-      setScores(newScores)
+      setTalentScores(newScores)
 
       if (currentScenario < scenarios.length - 1) {
-        setCurrentScenario(currentScenario + 1)
-        setSelectedAnswer(null)
+        setCurrentScenario(prevScenario => prevScenario + 1)
+        setSelectedAnswer(undefined)
       } else {
-        setShowResults(true)
+        localStorage.setItem('talentTestResults', JSON.stringify(newScores))
+        router.push('/results')
       }
     }
   }
 
-  const getTopTalents = () => {
-    return Object.entries(scores)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 5)
-  }
-
-  if (showResults) {
-    const topTalents = getTopTalents()
-    return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle>Your Top Talents</CardTitle>
-          <CardDescription>Based on your responses</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {topTalents.map(([talent, score], index) => (
-              <li key={talent} className="flex justify-between items-center">
-                <span>{index + 1}. {talent}</span>
-                <span className="font-semibold">Score: {score}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-    )
-  }
-
-  const currentQuestion: Scenario = scenarios[currentScenario]
   const progress = ((currentScenario + 1) / scenarios.length) * 100
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Talent Test</CardTitle>
-        <CardDescription>Scenario {currentScenario + 1} of {scenarios.length}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-4 text-lg">{currentQuestion.question}</p>
-        <RadioGroup value={selectedAnswer || ""} onValueChange={setSelectedAnswer}>
-          {currentQuestion.answers.map((answer, index) => (
-            <div key={index} className="flex items-start space-x-2 mb-4">
-              <RadioGroupItem value={index.toString()} id={`answer-${index}`} className="mt-1" />
-              <Label htmlFor={`answer-${index}`} className="flex-grow">{answer.text}</Label>
+      <CardContent className="p-6">
+        <Progress value={progress} className="mb-4" />
+        <h2 className="text-2xl font-bold mb-4">{scenarios[currentScenario].question}</h2>
+        <RadioGroup 
+          key={currentScenario} 
+          value={selectedAnswer} 
+          onValueChange={handleAnswer}
+        >
+          {scenarios[currentScenario].answers.map((answer, index) => (
+            <div key={index} className="flex items-center space-x-2 mb-2">
+              <RadioGroupItem value={index.toString()} id={`answer-${index}`} />
+              <Label htmlFor={`answer-${index}`}>{answer.text}</Label>
             </div>
           ))}
         </RadioGroup>
-      </CardContent>
-      <CardFooter className="flex flex-col items-center">
-        <Button 
-          onClick={handleSubmit} 
-          disabled={selectedAnswer === null}
-          className="w-full mb-4"
-        >
-          Submit
+        <Button onClick={handleNext} disabled={selectedAnswer === undefined} className="mt-4">
+          {currentScenario < scenarios.length - 1 ? t('next') : t('finish')}
         </Button>
-        <Progress value={progress} className="w-full mb-2" />
-        <p className="text-sm text-muted-foreground">
-          Progress: {currentScenario + 1} / {scenarios.length}
-        </p>
-      </CardFooter>
+        <div className="mt-4 text-sm text-gray-500">
+          {t('progress', { current: currentScenario + 1, total: scenarios.length })}
+        </div>
+      </CardContent>
     </Card>
   )
 }

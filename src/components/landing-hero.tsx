@@ -1,7 +1,9 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 
 export function LandingHero() {
-  const t = useTranslations('landing');
+  const t = useTranslations('landing')
 
   return (
     <div className="text-center">
