@@ -11,10 +11,16 @@ type TalentScore = {
   score: number;
 }
 
+type Suggestions = {
+  jobs: string[];
+  education: string[];
+}
+
 export function Suggestions() {
   const t = useTranslations('suggestions')
   const [talents, setTalents] = useState<TalentScore[]>([])
-  const [suggestions, setSuggestions] = useState<{ jobs: string[], education: string[] }>({ jobs: [], education: [] })
+  const [suggestions, setSuggestions] = useState<Suggestions>({ jobs: [], education: [] })
+  const [error, setError] = useState<string | null>(null)
 
   const { complete } = useCompletion({
     api: '/api/suggestions',
@@ -36,16 +42,25 @@ export function Suggestions() {
     const prompt = `Based on the following talent scores: ${talentString}, suggest 5 suitable jobs and 5 education paths. Format the response as JSON with 'jobs' and 'education' arrays.`
     
     try {
+      setError(null)
       const result = await complete(prompt)
-      const parsedResult = JSON.parse(result)
-      setSuggestions(parsedResult)
+      if (result) {
+        const parsedResult = JSON.parse(result) as Suggestions
+        setSuggestions(parsedResult)
+      } else {
+        throw new Error('No result returned from AI')
+      }
     } catch (error) {
       console.error('Error getting suggestions:', error)
+      setError(t('error'))
     }
   }
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="text-red-500 mb-4">{error}</div>
+      )}
       <Card>
         <CardHeader>
           <CardTitle>{t('jobSuggestions')}</CardTitle>
