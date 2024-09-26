@@ -32,7 +32,7 @@ export function Results() {
 
   const handleNextStep = () => {
     localStorage.setItem('allTalentScores', JSON.stringify(allTalents))
-    router.push('/suggestions')
+    router.push('/interests')  // Changed from '/suggestions' to '/interests'
   }
 
   return (
