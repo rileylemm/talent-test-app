@@ -1,10 +1,10 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.tsx');
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove the experimental section if it's empty
+  // You can add other configuration options here if needed
 };
 
 export default withNextIntl(nextConfig);

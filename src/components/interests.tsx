@@ -24,14 +24,13 @@ export function Interests() {
     }
   }
 
-  const handleNext = () => {
-    const filledInterests = interests.filter(interest => interest.trim() !== '')
-    if (filledInterests.length >= 3) {
-      localStorage.setItem('userInterests', JSON.stringify(filledInterests))
-      router.push('/suggestions')
-    }
+const handleNext = () => {
+  const filledInterests = interests.filter(interest => interest.trim() !== '')
+  if (filledInterests.length >= 3) {
+    localStorage.setItem('userInterests', JSON.stringify(filledInterests))
+    router.push('/user-status')  // Changed from '/suggestions' to '/user-status'
   }
-
+}
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardContent className="p-6">

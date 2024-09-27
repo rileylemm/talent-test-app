@@ -17,6 +17,16 @@
     "description": "Basierend auf Ihren Antworten sind dies Ihre Top 5 Talente:",
     "scoreDescription": "Punktzahl: {score}",
     "nextStep": "Interessen hinzufügen",
+    "error": "Beim Abrufen Ihrer Ergebnisse ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorTitle": "Fehler",
+    "loading": "Ihre Ergebnisse werden geladen...",
+    "retry": "Erneut versuchen",
+    "noScores": "Keine Talentwerte verfügbar. Bitte nehmen Sie zuerst am Test teil.",
+    "noScoresTitle": "Keine Ergebnisse",
+    "noScoresDescription": "Sie haben den Talenttest noch nicht gemacht. Möchten Sie ihn jetzt machen?",
+    "takeTest": "Talenttest machen",
+    "noResultsTitle": "Keine Ergebnisse verfügbar",
+    "noResultsDescription": "Wir konnten keine Talentwerte für Sie finden. Bitte versuchen Sie, den Test erneut durchzuführen.",
     "talents": {
       "Analytical Thinking": "Analytisches Denken",
       "Problem-Solving Competence": "Problemlösungskompetenz",
@@ -75,12 +85,46 @@
     "addMore": "Weitere Interessen hinzufügen",
     "next": "Weiter"
   },
+  "userStatus": {
+    "title": "Was ist Ihr aktueller Status?",
+    "highSchool": "Schüler",
+    "college": "Student",
+    "employed": "Berufstätig",
+    "next": "Weiter"
+  },
+  "favoriteSubjects": {
+    "title": "Was sind Ihre Lieblingsfächer?",
+    "subjects": {
+      "Mathematics": "Mathematik",
+      "Science": "Naturwissenschaften",
+      "Literature": "Literatur",
+      "History": "Geschichte",
+      "Geography": "Geographie",
+      "Art": "Kunst",
+      "Music": "Musik",
+      "Physical Education": "Sport",
+      "Computer Science": "Informatik",
+      "Foreign Languages": "Fremdsprachen",
+      "Social Studies": "Sozialkunde",
+      "Economics": "Wirtschaft",
+      "Philosophy": "Philosophie",
+      "Psychology": "Psychologie",
+      "Other": "Andere"
+    },
+    "otherSubject": "Bitte geben Sie Ihr anderes Lieblingsfach an",
+    "next": "Weiter"
+  },
   "suggestions": {
     "title": "Ihre Karriere- und Bildungsvorschläge",
     "jobSuggestions": "Empfohlene Berufe",
     "educationSuggestions": "Empfohlene Bildungswege",
     "refreshSuggestions": "Vorschläge aktualisieren",
     "loading": "Generiere Vorschläge basierend auf Ihren Talenten und Interessen...",
-    "error": "Bei der Generierung der Vorschläge ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    "error": "Bei der Generierung der Vorschläge ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "feedbackError": "Beim Speichern Ihres Feedbacks ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "careerFields": "Potenzielle Berufsfelder",
+    "jobs": "Spezifische Jobvorschläge",
+    "educationPaths": "Empfehlungen für Bildungswege",
+    "skillsToDevelop": "Zu entwickelnde Fähigkeiten"
   }
 }

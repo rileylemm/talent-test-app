@@ -17,6 +17,16 @@
     "description": "Based on your answers, here are your top 5 talents:",
     "scoreDescription": "Score: {score}",
     "nextStep": "Add Your Interests",
+    "error": "An error occurred while fetching your results. Please try again.",
+    "errorTitle": "Error",
+    "loading": "Loading your results...",
+    "retry": "Retry",
+    "noScores": "No talent scores available. Please take the test first.",
+    "noScoresTitle": "No Results",
+    "noScoresDescription": "You haven't taken the talent test yet. Would you like to take it now?",
+    "takeTest": "Take Talent Test",
+    "noResultsTitle": "No Results Available",
+    "noResultsDescription": "We couldn't find any talent scores for you. Please try taking the test again.",
     "talents": {
       "Analytical Thinking": "Analytical Thinking",
       "Problem-Solving Competence": "Problem-Solving Competence",
@@ -75,12 +85,53 @@
     "addMore": "Add More Interests",
     "next": "Next"
   },
+  "userStatus": {
+    "title": "What is your current status?",
+    "highSchool": "High School Student",
+    "college": "College Student",
+    "employed": "Employed",
+    "next": "Next"
+  },
+  "favoriteSubjects": {
+    "title": "What are your favorite subjects?",
+    "subjects": {
+      "Mathematics": "Mathematics",
+      "Science": "Science",
+      "Literature": "Literature",
+      "History": "History",
+      "Geography": "Geography",
+      "Art": "Art",
+      "Music": "Music",
+      "Physical Education": "Physical Education",
+      "Computer Science": "Computer Science",
+      "Foreign Languages": "Foreign Languages",
+      "Social Studies": "Social Studies",
+      "Economics": "Economics",
+      "Philosophy": "Philosophy",
+      "Psychology": "Psychology",
+      "Other": "Other"
+    },
+    "otherSubject": "Please specify your other favorite subject",
+    "next": "Next"
+  },
   "suggestions": {
     "title": "Your Career and Education Suggestions",
     "jobSuggestions": "Recommended Jobs",
     "educationSuggestions": "Recommended Education Paths",
     "refreshSuggestions": "Refresh Suggestions",
     "loading": "Generating suggestions based on your talents and interests...",
-    "error": "An error occurred while generating suggestions. Please try again."
-  }
+    "error": "An error occurred while generating suggestions. Please try again.",
+    "feedbackError": "An error occurred while saving your feedback. Please try again.",
+    "careerFields": "Potential Career Fields",
+    "jobs": "Specific Job Suggestions",
+    "educationPaths": "Education Path Recommendations",
+    "skillsToDevelop": "Skills to Develop"
+  },
+  
+"favoriteSubjects": {
+      "title": "Select Your Favorite Subjects",
+      "instruction": "Please select at least three subjects that you enjoy or find interesting. You can choose entire categories or specific subjects within each category.",
+      "submit": "Continue",
+      "selectAtLeastThree": "Please select at least three subjects."
+    }
 }
